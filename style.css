@@ -1,0 +1,121 @@
+body{
+    background-color: #1d1f21;
+    color: #c5c8c6;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
+}
+#box{
+    width: 70%;
+    height: 30rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #282a2e;
+}
+#box .letter{
+    font-size: inherit;
+    font-family: inherit;
+}
+#box #input:focus{
+    outline: 0;
+}
+#container{
+    margin-top: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    
+}
+.word{
+    display: flex;
+    font-size: 18pt;
+    font-weight: 500;
+    user-select: none;
+    flex-wrap: wrap;
+}
+.word .letter{
+    color: rgba(197,200,198, 0.6);
+}
+.word .selected{
+    animation: blink 0.75s step-end infinite;
+    border-bottom: 2px solid #c5c8c6;
+}
+.word .space{
+    width: 0.75rem;
+    height: auto;
+}
+@keyframes blink {
+    from,
+    to {
+      border-color: transparent;
+    }
+    1%{
+        border-color: #c5c8c6;
+    }
+    50% {
+      border-color: transparent;
+    }
+  }
+#input{
+    pointer-events: none;
+    left: 0;
+    font-weight: 500;
+    color: rgba(0, 0, 0,0);
+    width: 100%;
+    background-color: #282a2e;
+    height: 80%;
+    border: 0;
+    font-family: inherit;
+    font-size: 18pt;
+    caret-color: white;
+    resize: none;
+    user-select: none; /* Impedisce la selezione del testo */
+  -webkit-user-select: none; /* Per compatibilità con WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Per Firefox */
+  -ms-user-select: none; /* Per Internet Explorer/Edge */
+}
+#solution{
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-content: flex-start;
+}
+.word .correct{
+    opacity: 1;
+}
+.word .wrong{
+    opacity: 1;
+    color: rgb(203, 0, 0);
+}
+.word .added{
+    opacity: 1;
+    color: rgb(133, 11, 11);
+}
+.uncorrect{
+    text-decoration: underline red wavy;
+    text-decoration-thickness: 1px;
+}
+
+#stats{
+    display: none;
+    position: relative;
+    top:0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#stats h2{
+    font-size: 30pt;
+}
+#stats p{
+    font-size: 22pt;
+    font-weight: 700;
+}
