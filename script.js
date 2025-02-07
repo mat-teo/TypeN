@@ -157,7 +157,7 @@ async function setUp(){
     aggiungiParola("leggere ");
     aggiungiParola("e ");
     aggiungiParola("scrivere ");
-    aggiungiParola("amo ");
+    aggiungiParola("letsgosky ");
     aggiungiParola("yang ");
     document.getElementsByClassName("letter")[0].classList.add("selected");
     document.getElementsByClassName("word")[0].classList.add("active");
