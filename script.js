@@ -1,7 +1,17 @@
-let attiva = document.getElementsByClassName("active");
+let attiva = CLASS("active");
 let inizio = -1;
 let giusti=0,sbagliati=0,aggiunti=0,missed=0;
 let end=false;
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+if(location.protocol=="http:"){
+    location.href="https"+location.href.substring(4);
+}
+
+
+
 
 document.addEventListener("keydown", press);
 async function caricaParole() {
@@ -19,7 +29,7 @@ async function getParolaCasuale() {
 function aggiungiParola(p){
     let div =document.createElement("div");
     div.classList.add("word");
-    document.getElementById("solution").appendChild(div);
+    ID("solution").appendChild(div);
     for(i = 0; i<p.length; i++){
         let span=document.createElement("span");
         span.innerHTML=p[i];
@@ -59,18 +69,18 @@ async function press(e) {
                 }else{
                     lastElement.remove();
                 }
-                let allSel = document.getElementsByClassName("selected");
+                let allSel = CLASS("selected");
                 if(allSel.length>1){
                     allSel[1].classList.remove("selected");
                 }
             }else{
-                let parole = document.getElementsByClassName("word");
+                let parole = CLASS("word");
                 if(attiva[0] != parole[0]){
                     for(i = 0; i < parole.length; i++){
                         if(parole[i] == attiva[0]){
                             attiva[0].classList.remove("active");
                             parole[i-1].classList = "word active";
-                            document.getElementsByClassName("selected")[0].classList.remove("selected");
+                            CLASS("selected")[0].classList.remove("selected");
                             parole[i-1].querySelectorAll(".space, .letter")[0].classList.add("selected");
                         }
                     }
@@ -79,7 +89,7 @@ async function press(e) {
         }
 
         else if(e.key == " "){
-            let word = document.getElementsByClassName("active")[0];
+            let word = CLASS("active")[0];
             let controllo = word.querySelectorAll(".wrong, .added, .letter");
             if(controllo.length>0){
                 if(controllo[0].classList=="letter selected" && word.getElementsByClassName("correct").length == 0){
@@ -89,17 +99,16 @@ async function press(e) {
             }else{
                 word.classList.add("right")
             }
-            let cerca = document.getElementsByClassName("word");
+            let cerca = CLASS("word");
             if(cerca[cerca.length-1]==word){ //fine
                 word.classList.remove("active");
-                //word.classList.add("uncorrect");
                 fineInserimento();
             }else{
                 word.classList.remove("active");
                 for(i = 0; i < cerca.length; i++){
                     if(cerca[i].classList=="word"){
                         cerca[i].classList.add("active");
-                        document.getElementsByClassName("selected")[0].classList.remove("selected");
+                        CLASS("selected")[0].classList.remove("selected");
                         cerca[i].getElementsByClassName("letter")[0].classList.add("selected");
                         break;
                     }
@@ -125,7 +134,7 @@ async function press(e) {
         if(check.length>0){
             check[0].classList.add("selected");
         }else{
-            let w = document.getElementsByClassName("word");
+            let w = CLASS("word");
             if(attiva[0].getElementsByClassName("wrong").length==0 && w[w.length-1] == attiva[0] ){
                 attiva[0].classList="word right"
                 fineInserimento();
@@ -146,52 +155,96 @@ async function press(e) {
 }
 
 async function setUp(){
-    /*for(let i=0;i<10;i++){
+    if(localStorage.wpm){
+        ID("highscore").innerHTML = "highscore: " +localStorage.wpm;
+    }
+
+    ID("solution").innerHTML="";
+
+    for(let i=0;i<10;i++){
         aggiungiParola(await getParolaCasuale()+" ");
-    }*/
-    aggiungiParola("stefano ");
-    aggiungiParola("panzetti ");
-    aggiungiParola("analfabeta ");
-    aggiungiParola("non ");
-    aggiungiParola("sa ");
-    aggiungiParola("leggere ");
-    aggiungiParola("e ");
-    aggiungiParola("scrivere ");
-    aggiungiParola("letsgosky ");
-    aggiungiParola("yang ");
-    document.getElementsByClassName("letter")[0].classList.add("selected");
-    document.getElementsByClassName("word")[0].classList.add("active");
+    }
+
+    CLASS("letter")[0].classList.add("selected");
+    CLASS("word")[0].classList.add("active");
+  
+    end=false;
+    giusti=0;
+    sbagliati=0;
+    aggiunti=0;
+    missed=0;
+    inizio=-1;
+    ID("solution").style.display = "flex";
+    ID("stats").style.display = "none";
 }
 
 function fineInserimento(){
     end=true;
     let tempo,accuracy,ncorrette,wpm;
-    sbagliati+= document.getElementsByClassName("uncorrect").length;
-    missed+= document.getElementsByClassName("letter").length;
-    console.log("giusti sbagliati aggiunti missati");
-    console.log(giusti + " " + sbagliati + " " + aggiunti + " " + missed);
+    sbagliati+= CLASS("uncorrect").length;
+    missed+= CLASS("letter").length;
     accuracy= (giusti / (sbagliati+aggiunti+giusti))*100;
     accuracy=Math.round(accuracy);
-    console.log(accuracy+"%");
     tempo = performance.now() - inizio;
     tempo = Math.round(tempo);
     tempo /= 1000;
-    console.log(tempo+"s");
-    let sel=document.getElementsByClassName("selected");
+    let sel=CLASS("selected");
     if(sel.length>0){
-        document.getElementsByClassName("selected")[0].classList.remove("selected");
+        CLASS("selected")[0].classList.remove("selected");
     }
-    ncorrette=document.getElementsByClassName("right").length;
-    console.log(ncorrette+" parole su " + document.getElementsByClassName("word").length);
-    wpm = Math.round( ( document.getElementsByClassName("correct").length * 60 ) / ( 5 * tempo ) );
+    ncorrette=CLASS("right").length;
+    wpm = Math.round( ( CLASS("correct").length * 60 ) / ( 5 * tempo ) );
     if(ncorrette==0){
         wpm=0;
     }
-    console.log(wpm+"wpm");
-    document.getElementById("solution").style.display = "none";
-    document.getElementById("stats").style.display = "block";
-    document.getElementById("wpm").innerHTML= wpm+" WPM";
-    document.getElementById("acc").innerHTML= accuracy+"%";
-    document.getElementById("time").innerHTML= tempo.toFixed(1)+" s";
-    document.getElementById("recap").innerHTML= giusti + "-" + sbagliati + "-" + aggiunti + "-" + missed;
+    
+    if(!localStorage.wpm){
+        localStorage.wpm = String(wpm);
+        ID("highscore").innerHTML = "highscore: " +localStorage.wpm;
+    }else{
+        if(parseInt(localStorage.wpm) < wpm){
+            localStorage.wpm = String(wpm);
+            ID("highscore").innerHTML = "highscore: " +localStorage.wpm;
+        }
+    }
+    console.log(localStorage.wpm);
+    
+    ID("solution").style.display = "none";
+    ID("stats").style.display = "block";
+
+    ID("wpm").childNodes.forEach(node =>{
+        if(node.nodeType == Node.TEXT_NODE){
+            node.nodeValue="";
+        }
+    })
+    ID("wpm").innerHTML+= wpm+" WPM";
+
+    ID("acc").childNodes.forEach(node =>{
+        if(node.nodeType == Node.TEXT_NODE){
+            node.nodeValue="";
+        }
+    })
+    ID("acc").innerHTML+= accuracy+"%";
+
+    ID("time").childNodes.forEach(node =>{
+        if(node.nodeType == Node.TEXT_NODE){
+            node.nodeValue="";
+        }
+    })
+    ID("time").innerHTML += tempo.toFixed(1)+" s";
+
+    ID("recap").childNodes.forEach(node =>{
+        if(node.nodeType == Node.TEXT_NODE){
+            node.nodeValue="";
+        }
+    })
+    ID("recap").innerHTML+= giusti + "-" + sbagliati + "-" + aggiunti + "-" + missed;
+}
+
+
+function ID(id){
+    return document.getElementById(id);
+}
+function CLASS(c){
+    return document.getElementsByClassName(c);
 }

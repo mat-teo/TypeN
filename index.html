@@ -5,11 +5,11 @@
         <title>TypeN</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
+        <link rel="manifest" href="/manifest.json">
     </head>
     <body>
-        
+        <h2 id="highscore"></h2>
         <div id="box">
-            
             <h1>TYPEN</h1>
             <div id="container">
            <!--     <textarea spellcheck="false" autocapitalize="false" id="input" autofocus ></textarea>  -->
@@ -18,11 +18,24 @@
                 </div>
                 <div id="stats">
                     <h2>STATS</h2>
-                    <p id="wpm"></p>
-                    <p id="acc"></p>
-                    <p id="time"></p>
-                    <p id="recap"></p>
-                    <p id="tot"></p>
+                    <div id="wpm">
+                        <div class="hover-box">word per minute</div>
+                    </div>
+                    <div id="acc">
+                        <div class="hover-box">accuratezza</div>
+                    </div>
+                    <div id="time">
+                        <div class="hover-box">tempo impiegato</div>
+                    </div>
+                    <div id="recap">
+                        <div class="hover-box">corretti<br/>errati<br/>aggiunti<br/>mancati</div>
+                    </div>
+                    <div id="replay">
+                        <button onclick="setUp();">
+                            <img src="repeat.png" alt="ripeti">
+                            <div class="hover-box-down">ripeti</div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
