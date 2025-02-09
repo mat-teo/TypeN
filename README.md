@@ -1,5 +1,6 @@
 # TypeN
 Typing speed test
+
 Una webapp per misurare la velocità e la precisione di digitazione in WPM (Words Per Minute).
 
 🚀 Funzionalità
