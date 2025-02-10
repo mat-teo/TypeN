@@ -47,9 +47,8 @@ body{
     color: rgba(197,200,198, 0.6);
 }
 .word .selected{
-    color: rgba(26, 128, 223, 0.6);
     animation: blink 0.75s step-end infinite;
-    border-bottom: 2px solid rgb(26, 128, 223);
+    border-left: 3px solid rgb(197,200,198);
 }
 .word .space{
     width: 0.75rem;
@@ -61,7 +60,7 @@ body{
       border-color: transparent;
     }
     1%{
-        border-color: rgb(26, 128, 223);
+        border-color: rgb(197,200,198);
     }
     50% {
       border-color: transparent;

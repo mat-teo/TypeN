@@ -12,12 +12,12 @@ if(location.protocol=="http:"){
 
 
 
-
 document.addEventListener("keydown", press);
+
 async function caricaParole() {
-    const response = await fetch('parole.txt'); 
+    const response = await fetch('parole.txt');
     const text = await response.text();
-    return text.split('\n'); 
+    return text.split('\n');
 }
 
 async function getParolaCasuale() {

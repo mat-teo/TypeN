@@ -3,9 +3,16 @@
     "name": "TypeN",
     "short_name": "TypeN",
     "description": "Un test di velocità di scrittura",
-    "start_url": "/",
+    "start_url": "/4ib/matteo/index.html",
     "background_color": "#1d1f21",
     "theme_color": "#c5c8c6",
     "orientation": "any",
-    "display": "standalone"
+    "scope": "/4IB/Matteo/",
+    "display": "standalone",
+    "icons": [
+        {
+        "src":"icon.png",
+        "sizes": "512x512"
+        }
+    ]
 }

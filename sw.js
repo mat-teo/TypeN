@@ -5,10 +5,13 @@ self.addEventListener('install', event => {
     const cache = await caches.open(CACHE_NAME);
     cache.addAll([
       '/',
-      '/scritp.js',
-      '/style.css',
-      '/repeat.png',
-      '/parole.txt'
+      'index.html',
+      'script.js',
+      'style.css',
+      'icon.png',
+      'repeat.png',
+      'parole.txt',
+      'manifest.json'
     ]);
   })());
 });
