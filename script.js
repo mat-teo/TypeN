@@ -52,6 +52,11 @@ async function press(e) {
     if(end){
         return;
     }
+    if(e.ctrlKey && e.key == "Enter"){
+        e.preventDefault();
+        setUp();
+        return;
+    }
     if (!e.key || e.key.length > 1 || !/^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúÁÉÍÓÚ]$/.test(e.key)) {  
         if(e.key=="Backspace"){
             let elements = attiva[0].querySelectorAll(".correct, .wrong, .added");
@@ -155,6 +160,7 @@ async function press(e) {
 }
 
 async function setUp(){
+    end=true;
     if(localStorage.wpm){
         ID("highscore").innerHTML = "highscore: " +localStorage.wpm;
     }
@@ -168,7 +174,6 @@ async function setUp(){
     CLASS("letter")[0].classList.add("selected");
     CLASS("word")[0].classList.add("active");
   
-    end=false;
     giusti=0;
     sbagliati=0;
     aggiunti=0;
@@ -176,6 +181,7 @@ async function setUp(){
     inizio=-1;
     ID("solution").style.display = "flex";
     ID("stats").style.display = "none";
+    end=false;
 }
 
 function fineInserimento(){

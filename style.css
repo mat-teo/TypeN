@@ -84,6 +84,22 @@ body{
   -moz-user-select: none; /* Per Firefox */
   -ms-user-select: none; /* Per Internet Explorer/Edge */
 }
+
+#ctrlenter{
+    font-size: 14pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    align-items: center; 
+    margin: 0 auto;
+    font-weight: 100;
+    opacity: 0.5;
+}
+@media screen and (max-width: 768px) {
+    #ctrlenter {
+        display: none; 
+    }
+}
 #solution{
     position: absolute;
     top: 0;
