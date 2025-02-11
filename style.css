@@ -84,7 +84,14 @@ body{
   -moz-user-select: none; /* Per Firefox */
   -ms-user-select: none; /* Per Internet Explorer/Edge */
 }
-
+select{
+    border: transparent;
+    background: transparent;
+    color: inherit;
+}
+option{
+    background: #282a2e;
+}
 #ctrlenter{
     font-size: 14pt;
     display: flex;

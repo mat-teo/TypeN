@@ -10,7 +10,6 @@ self.addEventListener('install', event => {
       'style.css',
       'icon.png',
       'repeat.png',
-      'parole.txt',
       'manifest.json'
     ]);
   })());

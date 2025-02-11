@@ -14,6 +14,7 @@ if(location.protocol=="http:"){
 
 document.addEventListener("keydown", press);
 
+/*
 async function caricaParole() {
     const response = await fetch('parole.txt');
     const text = await response.text();
@@ -24,7 +25,18 @@ async function getParolaCasuale() {
     const parole = await caricaParole();
     const indiceCasuale = Math.floor(Math.random() * parole.length);
     return parole[indiceCasuale].trim();
+}*/
+
+function getParolaCasuale(){ //uguale ma in inglese
+        return fetch("https://random-word-api.herokuapp.com/word?lang=" + ID("language").value)
+          .then(response => response.json()) 
+          .then(data => data[0])
+          .catch(error => {
+            console.error("Errore:", error);
+            return null; 
+          });
 }
+
 
 function aggiungiParola(p){
     let div =document.createElement("div");
@@ -32,7 +44,7 @@ function aggiungiParola(p){
     ID("solution").appendChild(div);
     for(i = 0; i<p.length; i++){
         let span=document.createElement("span");
-        span.innerHTML=p[i];
+        span.innerHTML=p[i].toLowerCase();
         span.classList.add("letter");
         div.appendChild(span);
         if(i==p.length-1){
@@ -158,7 +170,6 @@ async function press(e) {
         sbagliati++;
     }
 }
-
 async function setUp(){
     end=true;
     if(localStorage.wpm){

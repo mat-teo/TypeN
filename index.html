@@ -10,16 +10,27 @@
         <link rel="icon" type="image/png" href="icon.png" />
     </head>
     <body>
+        <select name="language" id="language" onchange="setUp();">
+            <option value="it">italiano</option>
+            <option value="en">english</option>
+            <option value="de">deutsch</option>
+            <option value="es">spagnol</option>
+            <option value="pt-br">portoguese</option>
+            <option value="fr">francaise</option>
+        </select>
         <h2 id="highscore"></h2>
         <div id="box">
             <h1>TYPEN</h1>
             <div id="container">
            <!--     <textarea spellcheck="false" autocapitalize="false" id="input" autofocus ></textarea>  -->
                 <input id="mobileInput" type="text" autofocus style="opacity: 0; user-select: none;">
+
                 <div id="solution" onclick="document.getElementById('mobileInput').focus();
                 setTimeout(() => {input.setSelectionRange(input.value.length, input.value.length);}, 100);">
+                
                     <!--qua vengono inserite le parole-->
                 </div>
+
                 <div id="stats">
                     <h2>STATS</h2>
                     <div id="wpm">
