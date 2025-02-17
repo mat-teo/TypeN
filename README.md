@@ -1,17 +1,17 @@
 # TypeN
-Typing speed test
 
-Una webapp per misurare la velocità e la precisione di digitazione in WPM (Words Per Minute).
+Typing Speed Test
 
-🚀 Funzionalità
+A web app to measure typing speed and accuracy in WPM (Words Per Minute).
 
-📜 Test di digitazione con parole casuali
+🚀 Features
 
-📊 Statistiche dettagliate: WPM, precisione, errori
+📜 Typing test with random words
 
-🌍 Leaderboard globale (in sviluppo)
+📊 Detailed statistics: WPM, accuracy, errors, highscore and local leaderboard
 
-📱 Responsive e accessibile
+🌍 Global leaderboard (in development)
 
-🛠 Tecnologie utilizzate:
-    HTML, CSS, JavaScript 
+📱 Responsive and accessible
+
+🛠 Technologies used: HTML, CSS, JavaScript
