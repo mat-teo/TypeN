@@ -6,10 +6,12 @@ self.addEventListener('install', event => {
     cache.addAll([
       '/',
       'index.html',
-      'script.js',
+      'js/script.js',
+      'js/leaderboard.js',
       'style.css',
-      'icon.png',
-      'repeat.png',
+      'img/icon.png',
+      'img/repeat.png',
+      'img/lb.png',
       'manifest.json'
     ]);
   })());

@@ -5,56 +5,108 @@
         <title>TypeN</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        <script src="js/leaderboard.js"></script>
+        <script src="js/script.js"></script>
         <link rel="manifest" href="manifest.json">
-        <link rel="icon" type="image/png" href="icon.png" />
+        <link rel="icon" type="image/png" href="img/icon.png" />
     </head>
     <body>
-        <select name="language" id="language" onchange="setUp();">
-            <option value="it">italiano</option>
-            <option value="en">english</option>
-            <option value="de">deutsch</option>
-            <option value="es">spagnol</option>
-            <option value="pt-br">portoguese</option>
-            <option value="fr">francaise</option>
-        </select>
-        <h2 id="highscore"></h2>
-        <div id="box">
-            <h1>TYPEN</h1>
-            <div id="container">
-           <!--     <textarea spellcheck="false" autocapitalize="false" id="input" autofocus ></textarea>  -->
-                <input id="mobileInput" type="text" autofocus style="opacity: 0; user-select: none;">
-
-                <div id="solution" onclick="document.getElementById('mobileInput').focus();
-                setTimeout(() => {input.setSelectionRange(input.value.length, input.value.length);}, 100);">
-                
-                    <!--qua vengono inserite le parole-->
-                </div>
-
-                <div id="stats">
-                    <h2>STATS</h2>
-                    <div id="wpm">
-                        <div class="hover-box">word per minute</div>
-                    </div>
-                    <div id="acc">
-                        <div class="hover-box">accuratezza</div>
-                    </div>
-                    <div id="time">
-                        <div class="hover-box">tempo impiegato</div>
-                    </div>
-                    <div id="recap">
-                        <div class="hover-box">corretti<br/>errati<br/>aggiunti<br/>mancati</div>
-                    </div>
-                    <div id="replay">
-                        <button onclick="setUp();">
-                            <img src="repeat.png" alt="ripeti">
-                            <div class="hover-box-down">ripeti</div>
-                        </button>
-                    </div>
+        <div id="addToLb">
+            <button id="close" onclick="
+            ID('addToLb').style.display='none';
+            ID('all').classList.remove('blurred');
+            ID('positions').innerHTML='';
+            ">x</button>
+            <div class="sx">
+                <h2>Classifica locale</h2>
+                <div id="positions">
+                    
                 </div>
             </div>
-            <div id="ctrlenter">
-                Ctrl + Enter per restartare
+            <div class="dx">
+                <h2>Entra <br/>in classifica</h2>
+                <input maxlength="5" placeholder="inserisci il tuo nome..." spellcheck="false" type="text" id="nick" oninput="
+                var input = ID('nick');
+                input.value = input.value.replace(/\s+/g, ''); 
+                ">
+
+                <h3 id="score"></h3>
+
+                <button id="add" onclick="
+                                if(ID('nick').value !== ''){
+                                    addScore(ID('nick').value,wpm);
+                                    let lb = getLeaderboard();
+                                    ID('positions').innerHTML='';
+                                    for(let i=0;i<lb.length;i++){
+                                        let a = document.createElement('div');
+                                        a.innerHTML='#'+ (i+1) + ' ' + lb[i].username + ' ' + lb[i].score + ' WPM';
+                                        ID('positions').appendChild(a);
+                                    }
+                                    this.innerHTML='Aggiunto!';
+                                    this.style.backgroundColor = 'green';
+                                    this.style.color = 'white';
+                                    this.disabled = 'true';
+                                }
+                                
+                ">Aggiungi</button>
+            </div>
+        </div>
+        <div id="all">
+            <select id="language" onchange="setUp();">
+                <option value="it">italiano</option>
+                <option value="en">english</option>
+                <option value="de">deutsch</option>
+                <option value="es">spagnol</option>
+                <option value="pt-br">portoguese</option>
+                <option value="fr">francaise</option>
+            </select>
+            <h2 id="highscore"></h2>
+            
+            <div id="box">
+                <h1>TYPEN</h1>
+                <div id="container">
+            <!--     <textarea spellcheck="false" autocapitalize="false" id="input" autofocus ></textarea>  -->
+                    <input id="mobileInput" type="text" autofocus style="opacity: 0; user-select: none;">
+
+                    <div id="solution" onclick="document.getElementById('mobileInput').focus();
+                    setTimeout(() => {input.setSelectionRange(input.value.length, input.value.length);}, 100);">
+                    
+                        <!--qua vengono inserite le parole-->
+                    </div>
+
+                    <div id="stats">
+                        <h2>STATS</h2>
+                        <div id="wpm">
+                            <div class="hover-box">words per minute</div>
+                        </div>
+                        <div id="acc">
+                            <div class="hover-box">accuratezza</div>
+                        </div>
+                        <div id="time">
+                            <div class="hover-box">tempo impiegato</div>
+                        </div>
+                        <div id="recap">
+                            <div class="hover-box">corretti<br/>errati<br/>aggiunti<br/>mancati</div>
+                        </div>
+                        <div id="buttons">
+                            <div id="replay">
+                                <button onclick="setUp();">
+                                    <img src="img/repeat.png" alt="ripeti">
+                                    <div class="hover-box-down">ripeti</div>
+                                </button>
+                            </div>
+                            <div id="leaderboard">
+                                <button onclick="OpenAddToLeaderboard();">
+                                    <img src="img/lb.png" alt="classifica">
+                                    <div class="hover-box-down">classifica</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ctrlenter">
+                    Ctrl + Enter per restartare
+                </div>
             </div>
         </div>
     </body>

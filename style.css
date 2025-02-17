@@ -4,6 +4,10 @@ body{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
 }
+#all.blurred{
+    pointer-events: none;
+    filter: blur(5px);
+}
 #highscore{
     text-align: right;
     margin-right: 1rem;
@@ -88,6 +92,7 @@ select{
     border: transparent;
     background: transparent;
     color: inherit;
+    display: block;
 }
 option{
     background: #282a2e;
@@ -186,6 +191,29 @@ option{
     opacity: 0.6;
 }
 
+#leaderboard{
+    position: relative; 
+    cursor: pointer;
+    display: block;
+}
+#leaderboard button{
+    background: transparent;
+    border: transparent;
+    padding: 1rem;
+    margin-top: .5rem;
+}
+#leaderboard img{
+    width: 3rem;
+    height: auto;
+    opacity: 1;
+}
+
+#buttons{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
 #container .hover-box {
     position: absolute;
     bottom: 85%; 
@@ -235,6 +263,10 @@ option{
     opacity: 1;
     pointer-events: auto;
 }
+#leaderboard:hover .hover-box-down{
+    opacity: 1;
+    pointer-events: auto;
+}
 .hover-box::after {
     content: "";
     position: absolute;
@@ -254,4 +286,89 @@ option{
     border-width: 6px;  
     border-style: solid;
     border-color:  transparent transparent rgba(0, 0, 0, 0.8) transparent;
+}
+
+#addToLb{
+    position: absolute;
+    background-color: #131313;
+    width: 80%;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    gap: 2rem;
+}
+#addToLb div{
+    flex-grow: 1;;
+}
+#addToLb .sx{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+#addToLb .dx{
+    flex: 1;
+    display: flex;
+    height: 100%;
+    background: white;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+#addToLb input{
+    background-color: transparent;
+    border: black solid 1px;
+    border-radius: 2rem;
+    color: black;
+    text-align: center;
+    height: 10%;
+    margin: 0 auto;
+    font-size: 16pt;
+    margin-top: 2rem;
+}
+#addToLb .dx button{
+    padding: 1rem;
+    margin-top: 3rem;
+    width: 25%;
+    background-color: rgba(0, 0, 0, 0.01);
+    font-size: 16pt;
+    border: black solid 1px;
+    border-radius: 2rem; 
+    color: black;
+    transition: background-color 0.5s ease-in-out;
+}
+#addToLb .dx button:hover{
+    background-color: rgba(0, 0, 0, 0.3); 
+}
+
+#addToLb .dx h3{
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 16pt;
+    padding: 1rem;
+    border: black solid 1px;
+    border-radius: 2rem; 
+    color: black;
+}
+#positions{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+#close{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 15pt;
+    background-color: #282a2e;
+    color: white;
+    border: white 1px solid;
+    box-sizing: border-box;
 }
